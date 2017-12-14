@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<form action="/Administrators" method="post">
+		{% csrf_token %}
+		<input type="text" name="user" /><br />
+		<hr>
+		<input type="password" name="password" />
+		<input type="submit" value="确定"/>
+	</form>
+</body>
+</html>

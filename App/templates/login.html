@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆</title>
+    <style>
+        input {
+            height: 35px;
+            width: 200px;
+            border-radius: 3px;
+            border:0.5px solid #cccccc;
+        }
+        input::-webkit-input-placeholder{text-align: center;}
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; height:auto; width:50%; margin: 0 auto; margin-top: 10%">
+        <span style="font-size: 25px;">登陆</span>
+        <form action="/denglu" method="post">
+            {% csrf_token %}
+            <br />
+            <br />
+            <label for="">用户名:</label>&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="text" name="username" placeholder="输入你的用户名">
+            <br>
+            <br />
+            <label for="">密码:</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="password" name="password" placeholder="密码">
+            <br />
+            <br />
+            <input style="height: 30px; width: 70px; background:#2d8cf0; color:#fff" type="submit" value="提交">
+        </form>
+    </div>
+    <br />
+    <br />
+    <hr style="width:25%">
+    <div style="text-align: center">
+        <span style="font-size:14px; color:#80848f">或者</span><button style="height:30px;width: 70px; background: #fff; border-radius: 3px; border: 0.8px solid #ccc; font-size: 15px"><a style="color:#495060" href="register">注册</a></button> 
+    </div>
+</body>
+</html>

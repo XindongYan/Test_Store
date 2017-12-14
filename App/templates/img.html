@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<form action="/ages" method="post">
+		{% csrf_token %}
+		<input type="file" name="file" id="file" value="" />
+		<input type="submit" value="确定"/>
+	</form>
+</body>
+</html>

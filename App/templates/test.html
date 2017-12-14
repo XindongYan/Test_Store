@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	
+	<style type="text/css">
+		img {
+			border-radius: 8px;
+			width: 800px;
+			margin: 0 auto;
+			/* margin-right: 10px; */
+			margin: 20px;
+			box-shadow: 5px 5px 30px #80848f;
+		}
+		span {
+			color: #fff;
+			padding-bottom: 250px;
+		}
+		a{
+			text-decoration: none;
+			color: #666
+		}
+		div {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<p style="margin: 30px;  font-weight: 800; font-family: 等线; font-size: 23px; color: #495060;">商店 pre_α</p>
+	{% if user_list %}
+		<a style="float: right; margin-top: -50px; font-size: 15px" href="/self">{{user_list}}</a>
+	{% else %}
+		<form action="/login" method="post">
+			{% csrf_token %}
+			<input style="height:30px;width: 70px;float: right; margin-top: -50px; background: #fff; border-radius: 3px; border: 0.8px solid #ccc; font-size: 15px" type="submit" value="登陆"/>
+		</form>
+	{% endif %}
+	<hr style="border: 0.5px solid #ccc;" />
+	<br />
+	<br />
+	
+	<div style=" width: 90%; margin: 0 auto;">
+		<a href="/store_post"><img src='static/media/The_New_Surface_Pro.png'>
+		<img src='static/media/iPhone_X.png'>
+	
+		<!--<img style="margin-left: 25px; margin-top: 40px; float: left; width: 40%;  " src='static/media/普利策获奖摄影作品.png'>-->
+		<img src='static/media/pixel2.png'>
+		<img src='static/media/Pro7.png'>
+		</a>
+		<br />
+		<br />
+		<br />
+		<hr />
+	</div>
+	
+</body>
+</html>

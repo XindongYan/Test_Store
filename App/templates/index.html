@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+    <!--<script src="vue.min.js"></script>-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue" type="text/javascript" charset="utf-8"></script>-->
+	<style type="text/css">
+		img {
+			border-radius: 8px;
+			width: 35%;
+			height: 230px;
+			margin: 0 auto;
+			margin-top: 20px;
+			margin-left: 30px;
+			/*box-shadow: 5px 5px 30px #80848f;*/
+		}
+		span {
+			color: black;
+			padding-bottom: 250px;
+		}
+		a{
+			text-decoration: none;
+		}
+		div {
+			background-color: #fff;
+			width: 80%;
+			height: 270px;
+			position: relative;
+			margin: 0 auto;
+			margin-top: 40px;
+			border-radius: 8px;
+		}
+		.p {
+			text-align: center;
+			position: relative;
+			margin: 0 auto;
+			margin-top: -90px;
+			margin-left: 90px;
+			color: #666;
+		}
+	</style>
+	<script src="https://unpkg.com/vue"></script>
+</head>
+<body style="background-color: #F2F2F2;">
+	
+	<p style="margin: 30px;  font-weight: 800; font-family: 等线; font-size: 23px; color: #495060;">商店 pre_α</p>
+	<form action="/Car" method="post">
+		{% csrf_token %}
+		<input style="margin-top: -50px; float: right; border-radius: 8px; width: 70px; height: 30px; background-color: #0188FB; border: none; color: #fff;" type="submit" value="购物清单"/>
+	</form>
+	<hr style="border: 0.5px solid #ccc;" />
+	
+  {% for i in content %}
+	<br >
+	<br >
+		<div><a href="{{i.id}}"><img id="images" src='/static/{{ i.Images }}' alt="" />
+			<p class="p">CN¥  {{ i.Unit }}</p>
+			<p class="p"> {{ i.New_Store }}</p>
+			
+			<form action="/ShoppingCart" method="post">
+				{% csrf_token %}
+				<input style="display: none;" type="text" id="image" name="image" value="/static/{{ i.Images }}" />
+				<input style="display: none;" type="text" id="name" name="name" value="{{i.New_Store}}" />
+				<input style="display: none;" type="number" id="unit" name="unit" value="{{i.Unit}}" />
+				<input style="float: right; background-color: red; color: #fff; border: none;height: 30px;font-family: '微软雅黑';" type="submit" value="加入购物车" />
+				
+			</form>
+			
+		</a></div>
+		
+		
+	{% endfor %}
+	<!--<button id="btn"></button>
+	
+	<script type="text/javascript">
+			btn = document.getElementById("btn")
+			images = document.getElementById("images")
+			
+			btn.onclick = function() {
+				alert(images.src)
+			}
+	</script>-->
+</body>
+</html>

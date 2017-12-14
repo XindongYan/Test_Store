@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<style>
+			.content {
+				height: auto;
+				width: 50%;
+				text-align: center;
+				margin: 0 auto;
+				border: 1px solid #dddee1;
+			}
+			p {
+				margin: 30px;
+			}
+			#mask{
+				background-color:#ccc;
+				opacity:0.5;
+				filter: alpha(opacity=50); 
+				position: absolute; 
+				left:0;
+				top:0;
+				z-index:100;
+			}
+			.submit {
+				background: #2d8cf0;
+				border: none;
+				height: 30px;
+				width: 100px;
+				color: #fff;
+				border-radius: 6px;
+			}
+			.loginCon input {
+				height: 35px;
+				border-radius: 5px;
+				border:0.5px solid #dddee1;
+				margin-top: 5%;
+			}
+			.logininfo {
+				margin-top: 27px;
+			}
+			.info {
+				margin-top: 60px;
+			}
+			.info input {
+				margin-top: 8%;
+			}
+			#box {
+				height: 200px;
+				width: 90%;
+				border: 1px solid #5cadff;
+				margin: 0 auto;
+				margin-top: 50px;
+			}
+			.box-content {
+				height: 198px;
+				width: 5px;
+				background: #2d8cf0;
+			}
+			.loginCon {
+				height: 300px;
+				width: 500px;
+				position: relative;
+				margin: 0 auto;    
+				text-align: center;
+				margin-top: -30%;
+				z-index: 1001;
+				border-radius: 7px;
+				background-color: #f8f8f9;
+				border: 1px solid #e9eaec;
+			}
+		</style>
+	</head>
+	<body>
+		<ul style="border: 1px solid #dddee1; width: 60%; margin: 0 auto;">
+			{% for i in Data %}
+				<span style="color: red; float: right; margin-top: 7%; border: none;" />{{ i.Unit }}</span>
+				<span style=" float: right; margin-top: 7%; color: #495060; font-size: 20px; font-weight: bold;">{{ i.Store_Name }}</span>
+				
+				<img style="width: 40%;" src="{{ i.Image }}"/>
+				<br />
+				<br />
+				
+			{% endfor %}
+			<span style="color: red; float: right;  font-size: 18px; font-weight: bold;">{{ ZJ.Unit__sum }}</span><span style=" float: right; color: #495060; font-size: 20px; font-weight: bold;">总价：</span>
+		</ul>	
+		<input style="float: right; height: 30px; width: 70px; border-radius: 7px;; font-size: 15px; border: none; background: #FF0000; color: #fff" type="submit" id="pay" value="购买">					
+
+		<script>
+			var pay  = document.getElementById('pay')
+			pay.onclick = () => {
+				Pay()
+				return false
+			}
+
+			function Pay(){
+				//获取页面的高度和宽度
+				var sWidth = document.body.scrollWidth;
+				var sHeight = document.body.scrollHeight;
+
+				//获取页面的可视区域的高度和宽度
+				var wHeight = document.documentElement.clientHeight;
+
+//				var Mask = document.createElement("div")
+//					Mask.id = "mask"
+//					Mask.style.height = wHeight + "px"
+//					Mask.style.width = sWidth + "px"
+//					document.body.appendChild(Mask)
+
+				var Login = document.createElement("div")
+					Login.id = "login"
+					Login.innerHTML = "<form method='post'>{% csrf_token %}<div class='loginCon'><div class='logininfo'><label>收件人姓名: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label><input style='width:250px' type='text' name='username'><br /><label>地址(精确到门牌)：</label><input style='width:250px' type='text' name='address'><br /><label><lable>联系方式：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</lable><input style='width:250px' type='number' name='phone'><br /><input class='submit' type='submit' value='确认'></div></div></form>"
+					document.body.appendChild(Login) 
+
+				Mask.onclick = () => {
+					document.body.removeChild(Login)
+					document.body.removeChild(Mask)
+				}
+			}
+
+		</script>
+	</body>
+</html>

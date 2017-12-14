@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/new" method="post">
+        {% csrf_token %}
+        <input type="submit" value="上传">
+    </form>
+    <form action="/logout" method="post">
+        {% csrf_token %}
+        <input type="submit" value="登出">
+    </form>
+    {% for i in list %}
+        <ul>
+            <li>{{ i.Unit }}</li>
+            <li>{{ i.New_Store }}</li>
+            <form action="/edit" method="post">
+                {% csrf_token %}
+                <input style="display: none" type="text" value="{{ i.Unit }}">
+                <input type="submit" value="编辑">
+            </form>
+            <form action="/delete" method="post">
+                {% csrf_token %}
+                <input style="display: none" type="text" name="store" value="{{ i.New_Store }}">                
+                <input type="submit" value="删除">
+            </form>
+        </ul>
+    {% endfor %}
+</body>
+</html>
